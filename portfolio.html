@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdulramon — Data & Presentation Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #1D9E75; --green-light: #E1F5EE; --green-mid: #0F6E56; --green-dark: #085041;
+    --coral: #D85A30; --coral-light: #FAECE7; --coral-dark: #993C1D;
+    --amber: #BA7517; --amber-light: #FAEEDA; --amber-dark: #633806;
+    --text: #1a1a18; --muted: #5F5E5A; --border: rgba(0,0,0,0.09);
+    --white: #fff; --surface: #fafaf8;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--text); font-size: 16px; line-height: 1.65; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,250,248,0.93); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 60px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-hire { background: var(--green) !important; color: white !important; padding: 6px 16px; border-radius: 6px; }
+  .nav-hire:hover { background: var(--green-dark) !important; color: white !important; }
+
+  .hero {
+    max-width: 920px; margin: 0 auto; padding: 5.5rem 2.5rem 3.5rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--green-light); color: var(--green-dark);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 1.25rem;
+  }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.35} }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem,5.5vw,3.8rem); line-height: 1.12; margin-bottom: 1rem; }
+  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero-sub { font-size: 1.05rem; color: var(--muted); font-weight: 300; max-width: 480px; margin-bottom: 2rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 500;
+    text-decoration: none; cursor: pointer; transition: all 0.2s;
+    border: 1.5px solid transparent; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary { background: var(--green); color: white; border-color: var(--green); }
+  .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+  .btn-outline { background: transparent; color: var(--text); border-color: rgba(0,0,0,0.18); }
+  .btn-outline:hover { border-color: var(--muted); }
+  .avatar {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-light) 0%, #9FE1CB 100%);
+    border: 3px solid var(--green-light); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--green-dark); letter-spacing: -2px;
+  }
+
+  .stats-row {
+    max-width: 920px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4,1fr);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: var(--border); gap: 1px;
+  }
+  .stat { background: var(--surface); padding: 1.5rem; text-align: center; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; line-height: 1; margin-bottom: 3px; }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 300; }
+
+  section { max-width: 920px; margin: 0 auto; padding: 4rem 2.5rem; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+  .sec-title { font-family: 'DM Serif Display', serif; font-size: 1.9rem; margin-bottom: 0.6rem; }
+  .sec-sub { color: var(--muted); font-weight: 300; max-width: 480px; margin-bottom: 2.5rem; }
+  .divider { max-width: 920px; margin: 0 auto; height: 1px; background: var(--border); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(255px,1fr)); gap: 1.1rem; }
+  .skill-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem;
+    position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; border-radius:12px 12px 0 0; }
+  .skill-card.excel::before { background: var(--green); }
+  .skill-card.ppt::before { background: var(--coral); }
+  .skill-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.06); }
+  .skill-icon { width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:.9rem; }
+  .excel .skill-icon { background: var(--green-light); }
+  .ppt .skill-icon { background: var(--coral-light); }
+  .skill-name { font-weight: 600; font-size: 14px; margin-bottom: 3px; }
+  .skill-desc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.5; margin-bottom: .9rem; }
+  .skill-tags { display:flex;flex-wrap:wrap;gap:5px; }
+  .tag { font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;border:1px solid var(--border);color:var(--muted); }
+
+  .projects-list { display:flex;flex-direction:column;gap:.9rem; }
+  .project-row {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.2rem 1.4rem; display: grid; grid-template-columns: 36px 1fr auto;
+    align-items: center; gap: 1.1rem; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .project-row:hover { border-color: var(--green); box-shadow: 0 4px 16px rgba(29,158,117,0.07); }
+  .project-num { font-family:'DM Serif Display',serif; font-size:1.4rem; color:rgba(0,0,0,0.12); text-align:center; }
+  .project-info h3 { font-weight:500;font-size:14px;margin-bottom:2px; }
+  .project-info p { font-size:13px;color:var(--muted);font-weight:300;line-height:1.45; }
+  .badge { font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px;white-space:nowrap; }
+  .badge-excel { background:var(--green-light);color:var(--green-dark); }
+  .badge-ppt { background:var(--coral-light);color:var(--coral-dark); }
+  .badge-both { background:var(--amber-light);color:var(--amber-dark); }
+
+  .tgrid { display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem; }
+  .tcard { background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.4rem; }
+  .stars { color:var(--amber);font-size:13px;margin-bottom:.6rem;letter-spacing:2px; }
+  .tbody { font-size:13px;color:var(--muted);font-style:italic;font-weight:300;margin-bottom:1rem;line-height:1.55; }
+  .tauthor { display:flex;align-items:center;gap:10px; }
+  .tavatar { width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600; }
+  .tname { font-size:13px;font-weight:500; }
+  .trole { font-size:12px;color:var(--muted);font-weight:300; }
+
+  .contact-shell {
+    background: var(--green-dark); border-radius: 16px; padding: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  .contact-shell h2 { font-family:'DM Serif Display',serif;font-size:2rem;color:white;margin-bottom:.6rem; }
+  .contact-shell > div > p { color:rgba(255,255,255,0.65);font-weight:300;font-size:15px;margin-bottom:1.5rem; }
+  .cdetail { display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.75);font-size:14px;margin-bottom:.6rem; }
+  .cdetail a { color:rgba(255,255,255,0.85);text-decoration:none; }
+  .cdetail a:hover { color:white; }
+  .cform { display:flex;flex-direction:column;gap:10px; }
+  .cform input,.cform textarea {
+    background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);
+    border-radius:8px;padding:10px 14px;font-size:14px;color:white;
+    font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;
+  }
+  .cform input::placeholder,.cform textarea::placeholder { color:rgba(255,255,255,0.35); }
+  .cform input:focus,.cform textarea:focus { border-color:rgba(255,255,255,0.45); }
+  .cform textarea { resize:vertical;min-height:90px; }
+  .btn-white {
+    background:white;color:var(--green-dark);border:none;padding:11px;
+    border-radius:8px;font-size:14px;font-weight:600;
+    font-family:'DM Sans',sans-serif;cursor:pointer;transition:background 0.2s;
+  }
+  .btn-white:hover { background:var(--green-light); }
+
+  footer { text-align:center;padding:2rem;font-size:13px;color:var(--muted);font-weight:300;border-top:1px solid var(--border); }
+  footer a { color:var(--green);text-decoration:none; }
+
+  @media(max-width:640px){
+    nav{padding:0 1.25rem;}
+    .nav-links li:not(:last-child){display:none;}
+    .hero{grid-template-columns:1fr;padding:3rem 1.25rem 2rem;}
+    .avatar{display:none;}
+    .stats-row{grid-template-columns:repeat(2,1fr);}
+    section{padding:3rem 1.25rem;}
+    .contact-shell{grid-template-columns:1fr;}
+    .project-row{grid-template-columns:1fr auto;}
+    .project-num{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Abdulramon</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-hire">Hire me</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag"><span class="pulse"></span> Available for freelance work</div>
+    <h1>Data &amp; Presentation<br><em>Specialist</em></h1>
+    <p class="hero-sub">I help businesses make sense of their data and communicate it compellingly — through powerful Excel models and polished PowerPoint decks.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">See my work ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+  <div class="avatar">AR</div>
+</div>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years experience</div></div>
+  <div class="stat"><div class="stat-num">25+</div><div class="stat-label">Projects completed</div></div>
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Happy clients</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">On-time delivery</div></div>
+</div>
+
+<section id="skills">
+  <p class="eyebrow">What I do</p>
+  <h2 class="sec-title">Core Skills</h2>
+  <p class="sec-sub">Specialised in Excel and PowerPoint — turning raw data and ideas into tools people actually use.</p>
+  <div class="skills-grid">
+    <div class="skill-card excel">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Financial Modelling</div>
+      <div class="skill-desc">Dynamic financial models, account trackers, and forecasts with clean formulas and structured layouts ready for decision-making.</div>
+      <div class="skill-tags"><span class="tag">XLOOKUP</span><span class="tag">Dynamic Arrays</span><span class="tag">Scenarios</span></div>
+    </div>
+    <div class="skill-card excel">
+      <div class="skill-icon">📈</div>
+      <div class="skill-name">Dashboards &amp; Pivot Tables</div>
+      <div class="skill-desc">Interactive dashboards with slicers, pivot charts, and real-time summaries built from large, complex transaction datasets.</div>
+      <div class="skill-tags"><span class="tag">PivotTables</span><span class="tag">Slicers</span><span class="tag">KPIs</span></div>
+    </div>
+    <div class="skill-card excel">
+      <div class="skill-icon">🏠</div>
+      <div class="skill-name">Property &amp; Rental Tracking</div>
+      <div class="skill-desc">Specialist in short-term rental data — Airbnb/Booking.com income tracking, multi-property summaries, and cash flow reconciliation.</div>
+      <div class="skill-tags"><span class="tag">Airbnb</span><span class="tag">Multi-property</span><span class="tag">Cash Flow</span></div>
+    </div>
+    <div class="skill-card excel">
+      <div class="skill-icon">🔁</div>
+      <div class="skill-name">Data Cleaning &amp; Automation</div>
+      <div class="skill-desc">Transforming messy account histories and transaction logs into structured, analysis-ready formats using advanced Excel features.</div>
+      <div class="skill-tags"><span class="tag">Power Query</span><span class="tag">Formulas</span><span class="tag">Formatting</span></div>
+    </div>
+    <div class="skill-card ppt">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Pitch &amp; Business Decks</div>
+      <div class="skill-desc">Narrative-driven presentations for clients, investors, and stakeholders that communicate your value proposition clearly and confidently.</div>
+      <div class="skill-tags"><span class="tag">Storytelling</span><span class="tag">Pitch Decks</span><span class="tag">Business</span></div>
+    </div>
+    <div class="skill-card ppt">
+      <div class="skill-icon">🖼️</div>
+      <div class="skill-name">Slide Design &amp; Templates</div>
+      <div class="skill-desc">Polished slide masters, brand-consistent templates, and reusable deck libraries tailored to your style and audience.</div>
+      <div class="skill-tags"><span class="tag">Slide Master</span><span class="tag">Branding</span><span class="tag">Templates</span></div>
+    </div>
+    <div class="skill-card ppt">
+      <div class="skill-icon">📉</div>
+      <div class="skill-name">Data Visualisation in PPT</div>
+      <div class="skill-desc">Turning Excel numbers into clear charts, infographics, and visual stories that land with any audience — from executives to investors.</div>
+      <div class="skill-tags"><span class="tag">Charts</span><span class="tag">Infographics</span><span class="tag">Icons</span></div>
+    </div>
+    <div class="skill-card ppt">
+      <div class="skill-icon">✨</div>
+      <div class="skill-name">Animations &amp; Transitions</div>
+      <div class="skill-desc">Smooth, purposeful animations and morph transitions that guide attention and give your presentations a polished, professional edge.</div>
+      <div class="skill-tags"><span class="tag">Morph</span><span class="tag">Motion</span><span class="tag">Timing</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <p class="eyebrow">Portfolio</p>
+  <h2 class="sec-title">Featured Projects</h2>
+  <p class="sec-sub">Real work delivered for real clients — across property, finance, and business operations.</p>
+  <div class="projects-list">
+    <div class="project-row">
+      <div class="project-num">01</div>
+      <div class="project-info">
+        <h3>Airbnb Multi-Property Account History Tracker</h3>
+        <p>Structured a full account history for a short-term rental portfolio spanning 6+ Boston properties. Organised raw bank transactions — Booking.com payments, ZRent ACH receipts, Fiverr and Facebook platform charges — into a clean, sortable ledger with debit/credit summaries and posted/pending status flags.</p>
+      </div>
+      <span class="badge badge-excel">Excel</span>
+    </div>
+    <div class="project-row">
+      <div class="project-num">02</div>
+      <div class="project-info">
+        <h3>Rental Income Cash Flow Dashboard</h3>
+        <p>Built an interactive dashboard summarising monthly rental income across multiple units, with automatic categorisation of ACH receipts, platform fees, and pending transactions — giving the client a clear monthly snapshot.</p>
+      </div>
+      <span class="badge badge-excel">Excel</span>
+    </div>
+    <div class="project-row">
+      <div class="project-num">03</div>
+      <div class="project-info">
+        <h3>Business Pitch Deck</h3>
+        <p>Designed a 15-slide PowerPoint presentation for a client seeking new business partnerships, including market overview, service breakdown, and pricing slides with clean branded visuals and smooth transitions.</p>
+      </div>
+      <span class="badge badge-ppt">PowerPoint</span>
+    </div>
+    <div class="project-row">
+      <div class="project-num">04</div>
+      <div class="project-info">
+        <h3>Sales Performance Report &amp; Deck</h3>
+        <p>Built a monthly sales reporting workbook with pivot tables and conditional formatting, then converted key insights into an executive summary slide deck for leadership presentations.</p>
+      </div>
+      <span class="badge badge-both">Excel + PPT</span>
+    </div>
+    <div class="project-row">
+      <div class="project-num">05</div>
+      <div class="project-info">
+        <h3>Transaction Reconciliation Tool</h3>
+        <p>Created a reconciliation workbook to match bank statement entries against invoices, flag discrepancies, and produce a clean monthly summary — saving the client several hours of manual checking each month.</p>
+      </div>
+      <span class="badge badge-excel">Excel</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="reviews">
+  <p class="eyebrow">Social proof</p>
+  <h2 class="sec-title">What Clients Say</h2>
+  <p class="sec-sub">Feedback from clients across property, operations, and business consulting.</p>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <p class="tbody">"Abdulramon delivered exactly what I needed — a clean, well-structured spreadsheet that made tracking my rental income across multiple properties so much easier. Highly recommend."</p>
+      <div class="tauthor">
+        <div class="tavatar" style="background:var(--green-light);color:var(--green-dark);">JA</div>
+        <div><div class="tname">James A.</div><div class="trole">Property Investor</div></div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <p class="tbody">"The pitch deck he built for us was professional, on-brand, and ready to present. Fast turnaround and great communication throughout the whole project."</p>
+      <div class="tauthor">
+        <div class="tavatar" style="background:var(--coral-light);color:var(--coral-dark);">FM</div>
+        <div><div class="tname">Fatima M.</div><div class="trole">Business Owner</div></div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <p class="tbody">"Very detail-oriented. He caught errors in our original data and restructured the whole workbook to be much easier to maintain going forward. Worth every penny."</p>
+      <div class="tauthor">
+        <div class="tavatar" style="background:var(--amber-light);color:var(--amber-dark);">KO</div>
+        <div><div class="tname">Kunle O.</div><div class="trole">Operations Manager</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="contact-shell">
+    <div>
+      <h2>Let's work together</h2>
+      <p>Got a spreadsheet that needs fixing, a deck that needs designing, or data that needs making sense of? I'm available for freelance projects — let's talk.</p>
+      <div class="cdetail">✉️ <a href="mailto:investo578@gmail.com">investo578@gmail.com</a></div>
+      <div class="cdetail">📍 <span>Lagos, Nigeria</span></div>
+      <div class="cdetail">⚡ <span>Usually responds within 24 hours</span></div>
+    </div>
+    <div class="cform">
+      <input type="text" placeholder="Your name">
+      <input type="email" placeholder="Your email">
+      <input type="text" placeholder="Project type (e.g. Excel model, Pitch deck)">
+      <textarea placeholder="Tell me about your project…"></textarea>
+      <button class="btn-white" onclick="window.location.href='mailto:investo578@gmail.com?subject=Freelance Project Enquiry'">Send message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Abdulramon · Data &amp; Presentation Specialist · <a href="mailto:investo578@gmail.com">investo578@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
